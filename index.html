@@ -26,7 +26,6 @@ border-radius: 20px;
 width: 90%;
 max-width: 360px;
 box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-z-index: 2;
 }
 
 .cat img {
@@ -73,31 +72,19 @@ position: static;
 margin-top: 10px;
 }
 
- {
+#yesBtn {
 background: white;
-color: ;
-left: 50%;
-transform: translateX(-50%) scale(1);
-}
-
- {
-background: ;
-color: white;
-top: 75px;
+color: #ff4e8b;
 left: 50%;
 transform: translateX(-50%);
 }
 
-.confetti {
-position: fixed;
-width: 8px;
-height: 8px;
-animation: fall 3s linear forwards;
-}
-
-@keyframes fall {
-from { transform: translateY(-10vh) rotate(0deg); }
-to { transform: translateY(110vh) rotate(720deg); }
+#noBtn {
+background: #ff4e8b;
+color: white;
+top: 75px;
+left: 50%;
+transform: translateX(-50%);
 }
 </style>
 </head>
@@ -111,7 +98,6 @@ to { transform: translateY(110vh) rotate(720deg); }
 
 <h1 id="question">Will you be my Valentine, My Love? 💖</h1>
 
-<!-- 💝 INPUT + LINK -->
 <input type="text" id="nameInput" placeholder="Enter her name 💕">
 <button id="genBtn" onclick="generateLink()">Generate Love Link 💌</button>
 <div class="link-box" id="linkBox"></div>
@@ -128,7 +114,6 @@ to { transform: translateY(110vh) rotate(720deg); }
 <script>
 let wifeName = "My Love";
 
-/* ===== READ NAME FROM URL ===== */
 document.addEventListener("DOMContentLoaded", () => {
 const params = new URLSearchParams(window.location.search);
 const nameFromUrl = params.get("name");
@@ -149,7 +134,6 @@ document.getElementById("question").innerText =
 `Will you be my Valentine, ${wifeName}? 💖`;
 }
 
-/* ===== GENERATE LINK ===== */
 function generateLink() {
 const input = document.getElementById("nameInput").value.trim();
 if (!input) return;
@@ -166,7 +150,6 @@ document.getElementById("linkBox").innerHTML =
 `💝 Share this link:<br><a href="${url}" style="color:white">${url}</a>`;
 }
 
-/* ===== BUTTON LOGIC ===== */
 let noCount = 0;
 let yesScale = 1;
 
@@ -174,27 +157,23 @@ function noClicked() {
 noCount++;
 document.getElementById("heartBreak").play();
 
-yesScale += 0.08;
+yesScale += 0.1;
 document.getElementById("yesBtn").style.transform =
 `translateX(-50%) scale(${yesScale})`;
 
-if (noCount === 1)
-document.getElementById("catImg").src =
-"https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif";
-
-if (noCount === 2)
-document.getElementById("noBtn").innerText = "Think again";
-
-if (noCount === 3)
-document.getElementById("noBtn").innerText = "You are hurting me?";
-
 if (noCount >= 4) {
 document.getElementById("noBtn").innerText =
-"Enough… I am crying now";
-document.getElementById("catImg").src =
-"https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif";
+"Enough… I am crying now 😢";
 }
 }
 
 function yesClicked() {
-document.get
+document.getElementById("loveMusic").play();
+document.getElementById("mainCard").innerHTML =
+`<h1>I Love You So Much 💖</h1>
+<p>You just made me the happiest person alive 🥰</p>`;
+}
+</script>
+
+</body>
+</html>
